@@ -855,6 +855,7 @@ export class Eth {
       block,
       root: parentBlock.header.stateRoot,
       skipBlockValidation: true,
+      skipBalance: true,
     })
 
     const { totalGasSpent, createdAddress } = runBlockResult.results[txIndex]

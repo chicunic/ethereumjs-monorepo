@@ -250,7 +250,7 @@ export class BlockBuilder {
     const blockData = { header, transactions: this.transactions }
     const block = Block.fromBlockData(blockData, this.blockOpts)
 
-    const result = await this.vm.runTx({ tx, block, skipHardForkValidation })
+    const result = await this.vm.runTx({ tx, block, skipHardForkValidation, skipBalance: true })
 
     // If tx is a blob transaction, remove blobs/kzg commitments before adding to block per EIP-4844
     if (tx instanceof BlobEIP4844Transaction) {

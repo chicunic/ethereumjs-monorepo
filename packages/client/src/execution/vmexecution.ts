@@ -441,6 +441,7 @@ export class VMExecution extends Execution {
             ...opts,
             skipHeaderValidation,
             reportPreimages,
+            skipBalance: true,
           })
 
           if (this.config.savePreimages && result.preimages !== undefined) {
@@ -733,6 +734,7 @@ export class VMExecution extends Execution {
                     skipBlockValidation,
                     skipHeaderValidation: true,
                     reportPreimages: this.config.savePreimages,
+                    skipBalance: true,
                   })
                   const afterTS = Date.now()
                   const diffSec = Math.round((afterTS - beforeTS) / 1000)
@@ -1024,6 +1026,7 @@ export class VMExecution extends Execution {
           root,
           clearCache: false,
           skipHeaderValidation: true,
+          skipBalance: true,
         })
         const afterTS = Date.now()
         const diffSec = Math.round((afterTS - beforeTS) / 1000)
@@ -1043,7 +1046,7 @@ export class VMExecution extends Execution {
         for (const tx of block.transactions) {
           const txHash = bytesToHex(tx.hash())
           if (allTxs || txHashes.includes(txHash)) {
-            const res = await vm.runTx({ block, tx })
+            const res = await vm.runTx({ block, tx, skipBalance: true })
             this.config.logger.info(
               `Executed tx hash=${txHash} gasUsed=${res.totalGasSpent} from block num=${blockNumber}`
             )

@@ -332,9 +332,9 @@ export class TxPool {
     }
     const minimumBalance = tx.value + currentGasPrice.maxFee * tx.gasLimit
     if (account.balance < minimumBalance) {
-      throw new Error(
-        `0x${sender} does not have enough balance to cover transaction costs, need ${minimumBalance}, but have ${account.balance} (insufficient balance)`
-      )
+      // throw new Error(
+      //   `0x${sender} does not have enough balance to cover transaction costs, need ${minimumBalance}, but have ${account.balance} (insufficient balance)`
+      // )
     }
   }
 
